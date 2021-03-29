@@ -1,0 +1,24 @@
+version: '3.7'
+services:
+  # Node server application
+  server:
+    image: auth_boilerplate_ts/server
+    container_name: auth_boilerplate_ts_server
+    stdin_open: true
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: ./docker/app/prod.dockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+      - redis
+  # Redis database
+  redis:
+    image: redis:6-alpine
+    restart: always
+    volumes:
+      - ./docker/app/redis.conf:/usr/local/etc/redis/redis.conf
+    ports: 
+      - 6379:6379

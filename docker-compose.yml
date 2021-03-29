@@ -1,0 +1,38 @@
+version: '3.7'
+services:
+  # Node server application
+  server:
+    image: auth_boilerplate_ts/server
+    container_name: auth_boilerplate_ts_server
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: ./docker/app/dev.dockerfile
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - 3000:3000
+    depends_on:
+      - database
+      - redis
+  # Database
+  database:
+    image: postgres:alpine
+    restart: always
+    ports:
+      - 5432:5432
+    env_file:
+      - ./docker/.env.database.dev
+  # Database Managment
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+  # Redis database
+  redis:
+    image: redis:latest
+    restart: always
+    ports: 
+      - 6379:6379
