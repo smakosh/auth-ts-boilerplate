@@ -12,6 +12,7 @@
 
 ### Locally
 
+0. Grab the [env variables](https://gist.github.com/smakosh/293f891eb974b69d727caaf411644603) to speed up the process
 1. Install Docker
 2. Run `yarn docker:compose`
 3. Run `yarn docker:migration:up`
