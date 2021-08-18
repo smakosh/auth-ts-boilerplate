@@ -14,10 +14,11 @@
 
 0. Grab the [env variables](https://gist.github.com/smakosh/293f891eb974b69d727caaf411644603) to speed up the process
 1. Install Docker
-2. Run `yarn docker:compose`
-3. Run `yarn docker:migration:up`
-4. Run `yarn watch`
-5. Open `localhost:3000/api`
+2. Install dependencies by running `yarn`
+3. Run `yarn docker:compose`
+4. Run `yarn docker:migration:up`
+5. Run `yarn watch`
+6. Open `localhost:3000/api`
 
 ### Deploying to a VPS or Cloud service
 
