@@ -24,7 +24,7 @@ export class TodoResolver {
         @Ctx() { req }: ContextType,
     ): Promise<TodoResponse> {
         try {
-            // check authorization
+            // check auth
             if (!req.session.userId && !req.user) {
                 return {
                     errors: [
@@ -36,10 +36,13 @@ export class TodoResolver {
                 };
             }
 
+            const owner = req.user
+
             const todo = await getManager().transaction(async (transaction) => {
                 // create a new todo instance
                 const todo = transaction.create(Todo, {
                     name,
+                    owner
                 });
                 await transaction.save(todo, {
                     reload: true,
