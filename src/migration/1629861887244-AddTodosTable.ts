@@ -20,7 +20,7 @@ export class AddTodosTable1629861887244 implements MigrationInterface {
                   type: 'varchar',
                 },
                 {
-                  name: 'owner',
+                  name: 'ownerId',
                   type: 'uuid',
                 },
                 {
@@ -50,7 +50,7 @@ export class AddTodosTable1629861887244 implements MigrationInterface {
           await queryRunner.createForeignKey(
             'Todos',
             new TableForeignKey({
-              columnNames: ['owner'],
+              columnNames: ['ownerId'],
               referencedColumnNames: ['id'],
               referencedTableName: 'Users',
               onDelete: 'CASCADE',
@@ -62,7 +62,7 @@ export class AddTodosTable1629861887244 implements MigrationInterface {
             'Todos',
             new TableIndex({
               name: 'ownerIndex',
-              columnNames: ['owner'],
+              columnNames: ['ownerId'],
             }),
           );
     }

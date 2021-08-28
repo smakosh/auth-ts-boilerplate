@@ -11,6 +11,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { ResetPasswordRequest } from './ResetPasswordRequest';
+import { Todo } from './Todo';
 
 export enum UserType {
   ADMIN_USER = 'ADMIN',
@@ -123,4 +124,12 @@ export class User extends BaseEntity {
     default: null,
   })
   deletedAt!: Date;
+
+  @OneToMany(() => Todo, (todo) => todo.owner, {
+    cascade: true,
+  })
+  @Field(() => [Todo], {
+    nullable: true,
+  })
+  todos?: Todo[];
 }

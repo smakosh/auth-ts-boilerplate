@@ -15,7 +15,8 @@ export class Todo extends BaseEntity {
   })
   name!: string;
 
-  @ManyToOne(() => User, (user) => user.tokens, {
+  @Field(() => String)
+  @ManyToOne(() => User, (owner) => owner.todos, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
   })
