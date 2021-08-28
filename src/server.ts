@@ -51,11 +51,15 @@ const logger = winston.createLogger({
  */
 import { User } from './entity/User';
 import { ResetPasswordRequest } from './entity/ResetPasswordRequest';
+import { Todo } from './entity/Todo';
+
 /**
  * Import resolvers
  */
 import { UserResolver } from './resolvers/User';
 import { ResetPasswordRequestResolver } from './resolvers/ResetPassword';
+import { TodoResolver } from './resolvers/Todo';
+
 /**
  * Directives
  */
@@ -66,7 +70,7 @@ import { LowerCaseDirective } from './directives';
 async function connect(): Promise<Connection> {
   return await createConnection({
     database: process.env.TYPEORM_DATABASE,
-    entities: [User, ResetPasswordRequest],
+    entities: [User, ResetPasswordRequest, Todo],
     host: process.env.TYPEORM_HOST,
     password: process.env.TYPEORM_PASSWORD,
     port: Number(process.env.TYPEORM_PORT),
@@ -166,7 +170,7 @@ async function main(): Promise<void> {
    * Generate a schema for Apollo
    */
   const schema = await buildSchema({
-    resolvers: [UserResolver, ResetPasswordRequestResolver],
+    resolvers: [UserResolver, ResetPasswordRequestResolver, TodoResolver],
     validate: process.env.NODE_ENV === 'production' ? true : false,
     authChecker: AuthenticationChecker,
     directives: [

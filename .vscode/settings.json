@@ -1,6 +1,7 @@
 {
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true,
+    "source.addMissingImports": true,
   },
   "workbench.colorCustomizations": {
     "titleBar.activeForeground": "#15202b",
