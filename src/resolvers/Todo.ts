@@ -4,6 +4,7 @@ import { ContextType } from '../types';
 import { FormError } from '../types/FormError';
 import { Arg, Ctx, Field, Mutation, ObjectType, Resolver } from 'type-graphql';
 import { getManager } from 'typeorm';
+import { User } from '../entity/User';
 
 @ObjectType()
 export class TodoResponse {
@@ -36,7 +37,12 @@ export class TodoResolver {
                 };
             }
 
-            const owner = req.user
+            const userId = req.session.userId
+
+            const owner = await User.findOneOrFail({
+                where: { id: userId },
+              });
+            
 
             const todo = await getManager().transaction(async (transaction) => {
                 // create a new todo instance

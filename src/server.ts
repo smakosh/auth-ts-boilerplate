@@ -209,6 +209,11 @@ async function main(): Promise<void> {
       maxFileSize: 4000,
       maxFiles: 10,
     },
+    playground: {
+      settings: {
+        'request.credentials': 'include',
+      },
+    },
     plugins: [
       {
         requestDidStart(): GraphQLRequestListener | void {

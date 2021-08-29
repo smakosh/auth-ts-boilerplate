@@ -15,16 +15,20 @@ export class Todo extends BaseEntity {
   })
   name!: string;
 
-  @Field(() => String)
+  @Field(() => User)
   @ManyToOne(() => User, (owner) => owner.todos, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
   })
   owner!: User;
 
-  @Field(() => Date)
+  @Field(() => Date, {
+    nullable: true,
+  })
   @Column({
     type: 'timestamp with time zone',
+    nullable: true,
+    default: null,
   })
   completedAt!: Date;
 
