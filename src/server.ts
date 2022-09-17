@@ -151,7 +151,7 @@ async function main(): Promise<void> {
       secret: String(process.env.SESSION_SECRET),
       store: new redisStore({ client: redisClient, disableTouch: true }),
       cookie: {
-        secure: process.env.NODE_ENV === 'production' ? true : false,
+        secure: process.env.NODE_ENV === 'production',
         httpOnly: true,
         maxAge: Number(process.env.SESSION_MAX_AGE),
         sameSite: 'lax',
